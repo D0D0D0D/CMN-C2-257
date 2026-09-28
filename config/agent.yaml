@@ -1,0 +1,26 @@
+# Agent Manifest - AgentRegistry entry point
+# AgentRegistry reads every key below at ROOT level; do not nest under `agent:`.
+id: "CMN-C2-257"
+name: "Enterprise Sales Proposal Draft Generation Agent"
+namespace: "cmn"
+version: "1.0.0"
+enabled: true
+category: "Cat 2"
+generation_mode: "llm"
+industry: "CMN"
+
+# Opaque compatibility metadata. Runtime tuning lives in config/config.yaml.
+base_type: "AgentBaseGraph"
+
+# Entry point - single dotted import path (module.Class).
+class: "src.graph.graph.SalesProposalDraftAgent"
+
+# Security
+required_trust_level: "VERIFIED_EXTERNAL"
+
+requires:
+  secrets:
+    - ANTHROPIC_API_KEY
+    - SALES_KB_EMBEDDING_API_KEY
+  extras:
+    - "anthropic"
